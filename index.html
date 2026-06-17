@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>🌈 Teacher Hanziey's Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fredoka', 'Comic Sans MS', 'Quicksand', sans-serif;
+        }
+
+        body {
+            background: #fdf8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0 12px 30px;
+            position: relative;
+        }
+
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .floating-bg span {
+            position: absolute;
+            font-size: 2.4rem;
+            opacity: 0.30;
+            animation: floatAround 22s infinite alternate ease-in-out;
+            display: block;
+            will-change: transform;
+        }
+        .floating-bg span:nth-child(1) { top: 8%; left: 4%; animation-duration: 18s; }
+        .floating-bg span:nth-child(2) { top: 20%; right: 6%; animation-duration: 25s; animation-delay: 1s; }
+        .floating-bg span:nth-child(3) { top: 45%; left: 2%; animation-duration: 21s; animation-delay: 2s; }
+        .floating-bg span:nth-child(4) { bottom: 30%; right: 3%; animation-duration: 19s; animation-delay: 0.5s; }
+        .floating-bg span:nth-child(5) { top: 70%; left: 8%; animation-duration: 27s; animation-delay: 3s; }
+        .floating-bg span:nth-child(6) { bottom: 10%; right: 10%; animation-duration: 23s; animation-delay: 1.2s; }
+        .floating-bg span:nth-child(7) { top: 12%; left: 20%; animation-duration: 20s; animation-delay: 0.2s; }
+        .floating-bg span:nth-child(8) { top: 55%; right: 15%; animation-duration: 26s; animation-delay: 2.5s; }
+        .floating-bg span:nth-child(9) { bottom: 18%; left: 25%; animation-duration: 24s; animation-delay: 1.8s; }
+        .floating-bg span:nth-child(10) { top: 85%; right: 25%; animation-duration: 22s; animation-delay: 0.9s; }
+        .floating-bg span:nth-child(11) { top: 30%; left: 50%; animation-duration: 28s; animation-delay: 3.2s; }
+        .floating-bg span:nth-child(12) { bottom: 45%; right: 45%; animation-duration: 20s; animation-delay: 0.7s; }
+        .floating-bg span:nth-child(13) { top: 65%; left: 70%; animation-duration: 19s; animation-delay: 1.4s; }
+        .floating-bg span:nth-child(14) { bottom: 5%; left: 40%; animation-duration: 30s; animation-delay: 2.1s; }
+        .floating-bg span:nth-child(15) { top: 5%; right: 40%; animation-duration: 24s; animation-delay: 0.3s; }
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(40px, -25px) rotate(6deg) scale(1.1); }
+            50% { transform: translate(-20px, 30px) rotate(-4deg) scale(0.9); }
+            75% { transform: translate(30px, 15px) rotate(8deg) scale(1.05); }
+            100% { transform: translate(-15px, -10px) rotate(-2deg) scale(1); }
+        }
+
+        .app-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar {
+            background: #ffd966;
+            padding: 12px 18px;
+            border-radius: 60px;
+            margin: 12px 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 6px 0 #e6b84c;
+            border: 2px solid #f7c35c;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2d4059;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .logo small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: #fef9e0;
+            padding: 0 14px;
+            border-radius: 40px;
+            color: #b45309;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d4059;
+            background: #fef9e0;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            border: 2px solid #e6b84c;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            background: #fff6c0;
+            transform: scale(0.96);
+        }
+        .menu-toggle {
+            display: none;
+            background: #fef9e0;
+            border: none;
+            font-size: 2rem;
+            padding: 0 18px;
+            border-radius: 40px;
+            border: 2px solid #e6b84c;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #fde9d0, #fce2c0);
+            padding: 30px 24px 34px;
+            border-radius: 70px 70px 70px 70px;
+            margin-bottom: 30px;
+            border: 3px solid #f7c35c;
+            box-shadow: 0 10px 0 #dba14b;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #2d4059;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 18px;
+            color: #3d2b1f;
+        }
+        .teacher-badge {
+            background: #fef9e0;
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: 3px solid #b45309;
+            color: #7c3a0a;
+        }
+
+        .search-wrap {
+            margin: 10px 0 28px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .search-wrap input {
+            flex: 1 1 260px;
+            padding: 16px 22px;
+            border-radius: 60px;
+            border: 3px solid #f7c35c;
+            font-size: 1.2rem;
+            background: white;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-wrap input:focus {
+            border-color: #b45309;
+            box-shadow: 0 0 0 4px #fde9d0;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 24px 16px;
+            margin: 24px 0 30px;
+        }
+        .topic-card {
+            background: white;
+            border-radius: 40px;
+            padding: 20px 12px 18px;
+            text-align: center;
+            box-shadow: 0 8px 0 #d4a373, 0 6px 12px rgba(0,0,0,0.08);
+            border: 3px solid #f7c35c;
+            transition: 0.15s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .topic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 0 #d4a373;
+        }
+        .topic-card .icon {
+            font-size: 3.4rem;
+            line-height: 1.2;
+        }
+        .topic-card .name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2d4059;
+        }
+        .topic-card .btn-open {
+            background: #ffb347;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 24px;
+            font-weight: 700;
+            color: #2d1f0c;
+            font-size: 1rem;
+            border-bottom: 4px solid #b45309;
+            cursor: pointer;
+            transition: 0.1s;
+            margin-top: 6px;
+        }
+        .topic-card .btn-open:active {
+            transform: scale(0.94);
+        }
+
+        .speaker-btn {
+            background: #fde9d0;
+            border: 2px solid #b45309;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .speaker-btn:active {
+            transform: scale(0.9);
+        }
+        .speaker-btn-small {
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+        }
+
+        .topic-detail {
+            background: white;
+            border-radius: 70px;
+            padding: 24px 20px 30px;
+            margin: 20px 0 30px;
+            border: 4px solid #f7c35c;
+            box-shadow: 0 10px 0 #dba14b;
+            display: none;
+        }
+        .topic-detail.active {
+            display: block;
+        }
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .detail-header h2 {
+            font-size: 2.2rem;
+            color: #2d4059;
+        }
+        .btn-back {
+            background: #fde9d0;
+            border: 3px solid #b45309;
+            border-radius: 50px;
+            padding: 8px 28px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            background: #f5e3d3;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-bottom: 4px solid #b58a6b;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .tabs button.active-tab {
+            background: #ffb347;
+            border-bottom-color: #7c3a0a;
+            transform: scale(0.96);
+        }
+        .tab-content {
+            display: none;
+            background: #fef9f0;
+            border-radius: 40px;
+            padding: 22px 18px;
+            min-height: 200px;
+        }
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
+        }
+        .vocab-item {
+            background: white;
+            border-radius: 30px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 3px solid #f7c35c;
+            cursor: pointer;
+            transition: 0.1s;
+            box-shadow: 0 4px 0 #dba14b;
+        }
+        .vocab-item:active {
+            transform: scale(0.94);
+        }
+        .vocab-item .big-emoji {
+            font-size: 3.2rem;
+            display: block;
+        }
+        .vocab-item .label {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(3px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .popup-overlay.show {
+            display: flex;
+        }
+        .popup-box {
+            background: white;
+            border-radius: 70px;
+            padding: 40px 40px 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 6px solid #ffb347;
+            box-shadow: 0 20px 0 #b45309;
+        }
+        .popup-box .big {
+            font-size: 5rem;
+        }
+        .popup-box .word {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #2d4059;
+        }
+        .popup-box .close-popup {
+            background: #b45309;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 12px 36px;
+            font-size: 1.4rem;
+            margin-top: 18px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .practice-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .practice-options button {
+            background: white;
+            border: 4px solid #f7c35c;
+            border-radius: 60px;
+            padding: 14px 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .practice-options button:active {
+            transform: scale(0.94);
+        }
+        .practice-feedback {
+            font-size: 1.5rem;
+            margin-top: 16px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .practice-progress {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .game-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .game-selector button {
+            background: #ffb347;
+            border: 4px solid #b45309;
+            border-radius: 60px;
+            padding: 14px 28px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .game-selector button.active-game {
+            background: #f7c35c;
+            transform: scale(0.96);
+        }
+        .game-container {
+            min-height: 250px;
+        }
+
+        .food-game-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .food-board {
+            background: #f5e3d3;
+            border-radius: 60px;
+            padding: 20px 14px;
+            min-width: 160px;
+            flex: 1 1 160px;
+            border: 4px dashed #b45309;
+        }
+        .food-board h4 {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .food-item {
+            background: white;
+            border-radius: 40px;
+            padding: 12px 8px;
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+            border: 2px solid #f7c35c;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .food-item:active {
+            transform: scale(0.94);
+        }
+        .food-item .emoji {
+            font-size: 2.2rem;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .memory-card {
+            background: #ffb347;
+            border-radius: 20px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            cursor: pointer;
+            border: 4px solid #b45309;
+            transition: 0.15s;
+            box-shadow: 0 4px 0 #b45309;
+            font-weight: 700;
+            color: #2d4059;
+        }
+        .memory-card.flipped {
+            background: white;
+        }
+        .memory-card.matched {
+            background: #81c784;
+            border-color: #2e7d32;
+            cursor: default;
+            box-shadow: 0 4px 0 #2e7d32;
+        }
+
+        .ws-area {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .ws-area input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 60px;
+            border: 3px solid #f7c35c;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+        }
+        .ws-question {
+            background: white;
+            border-radius: 30px;
+            padding: 16px 18px;
+            margin: 10px 0;
+            border: 3px solid #f7c35c;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .ws-question .q {
+            font-weight: 600;
+            flex: 1;
+        }
+        .ws-question input {
+            width: 100px;
+            padding: 8px 12px;
+            border-radius: 40px;
+            border: 2px solid #b45309;
+            font-size: 1rem;
+        }
+        .ws-result {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .ws-score {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+        .celebration.show {
+            display: block;
+        }
+        .celebration .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            animation: confettiFall 3s linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .celebration-msg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 70px;
+            padding: 30px 50px;
+            border: 6px solid #ffb347;
+            box-shadow: 0 20px 0 #b45309;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d4059;
+            text-align: center;
+            z-index: 1001;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .dashboard {
+            background: #fef9e0;
+            border-radius: 60px;
+            padding: 24px 20px;
+            margin: 30px 0;
+            border: 4px solid #f7c35c;
+            display: none;
+        }
+        .dashboard.active {
+            display: block;
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+            gap: 18px;
+        }
+        .dash-item {
+            background: white;
+            border-radius: 40px;
+            padding: 18px 10px;
+            text-align: center;
+            border: 3px solid #dba14b;
+        }
+
+        .fav-section {
+            margin: 16px 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .fav-btn {
+            background: #fde9d0;
+            border: 3px solid #b45309;
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .fav-topic {
+            background: #ffdbb5;
+            border-radius: 40px;
+            padding: 6px 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 10px 10px;
+            font-weight: 600;
+            color: #2d4059;
+            border-top: 4px solid #f7c35c;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 700px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 14px;
+            }
+            .nav-links.open { display: flex; }
+            .hero h1 { font-size: 2.2rem; }
+            .topic-grid { grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .topic-card .icon { font-size: 2.8rem; }
+            .food-game-area { flex-direction: column; align-items: center; }
+            .memory-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+            .celebration-msg { font-size: 2rem; padding: 20px 30px; }
+        }
+
+        .text-center { text-align: center; }
+        .mt-12 { margin-top: 12px; }
+        .mb-12 { margin-bottom: 12px; }
+        .flex-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .hidden { display: none; }
+        .badge-star { background: #ffb347; border-radius: 40px; padding: 2px 16px; font-weight: 700; }
+        
+        .voice-indicator {
+            display: inline-block;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="floating-bg">
+    <span>🍎</span><span>🥕</span><span>⭐</span><span>❤️</span><span>☁️</span>
+    <span>✏️</span><span>📚</span><span>🍌</span><span>🥦</span><span>🌟</span>
+    <span>💖</span><span>☁️</span><span>🖍️</span><span>📖</span><span>🌈</span>
+</div>
+
+<div class="app-wrapper" id="app">
+
+    <nav class="navbar">
+        <div class="logo">🏫 Teacher Hanziey <small>Learning Hub</small></div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" data-section="home" data-voice="Home">Home</a></li>
+            <li><a href="#" data-section="dashboard" data-voice="Dashboard">Dashboard</a></li>
+            <li><a href="#" data-section="favorites" data-voice="Favorites">Favorites</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="homeSection">
+        <h1>🌈 Welcome, Little Learners!</h1>
+        <p>Learn, play, and grow with Teacher Hanziey. Explore all your favourite topics right here!</p>
+        <div class="teacher-badge">👩‍🏫 Teacher Hanziey</div>
+    </header>
+
+    <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="🔍 Search fruits, animals, colors ...">
+    </div>
+
+    <div class="fav-section" id="favQuickBar"></div>
+
+    <div class="topic-grid" id="topicGrid"></div>
+
+    <div class="topic-detail" id="topicDetail">
+        <div class="detail-header">
+            <h2 id="detailTitle">Topic</h2>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <button class="speaker-btn" id="detailSpeakerBtn" aria-label="Listen to topic">🔊</button>
+                <button class="fav-btn" id="detailFavBtn">⭐ Favorite</button>
+                <button class="btn-back" id="closeDetailBtn">✖ Close</button>
+            </div>
+        </div>
+        <div class="tabs" id="tabHeaders"></div>
+        <div id="tabContentContainer"></div>
+    </div>
+
+    <div class="dashboard" id="dashboardSection">
+        <h2>📊 Parent Dashboard</h2>
+        <div class="dash-grid" id="dashGrid"></div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-box">
+            <div class="big" id="popupEmoji">🍎</div>
+            <div class="word" id="popupWord">Apple</div>
+            <button class="speaker-btn" id="popupSpeakerBtn" style="margin:12px auto;display:block;">🔊</button>
+            <button class="close-popup" id="popupCloseBtn">Close</button>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebrationContainer"></div>
+
+    <footer class="footer">© 2026 Teacher Hanziey's Learning Hub • Learn • Play • Create</footer>
+</div>
+
+<script>
+    (function() {
+        // ========== VOICE HELPER ==========
+        function speak(text, callback) {
+            if (!text) return;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                utterance.volume = 1;
+                utterance.lang = 'en-US';
+                if (callback) {
+                    utterance.onend = callback;
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function speakWithButton(text, buttonElement) {
+            speak(text);
+            if (buttonElement) {
+                buttonElement.classList.add('voice-indicator');
+                setTimeout(() => buttonElement.classList.remove('voice-indicator'), 1500);
+            }
+        }
+
+        // ========== DATA ==========
+        const TOPICS = [
+            { id:'alphabet', name:'Alphabet', icon:'🔤' },
+            { id:'numbers', name:'Numbers 1-20', icon:'🔢' },
+            { id:'colors', name:'Colors', icon:'🎨' },
+            { id:'shapes', name:'Shapes', icon:'⬛' },
+            { id:'fruits', name:'Fruits', icon:'🍎' },
+            { id:'vegetables', name:'Vegetables', icon:'🥕' },
+            { id:'farm', name:'Farm Animals', icon:'🐄' },
+            { id:'wild', name:'Wild Animals', icon:'🦁' },
+            { id:'transport', name:'Transportation', icon:'🚗' },
+            { id:'weather', name:'Weather', icon:'☀️' },
+            { id:'family', name:'Family', icon:'👪' },
+            { id:'body', name:'Body Parts', icon:'🧍' },
+            { id:'feelings', name:'Feelings', icon:'😊' },
+            { id:'goodfood', name:'Good & Bad Food', icon:'🍔' },
+            { id:'clothes', name:'Clothes', icon:'👗' },
+            { id:'helpers', name:'Community Helpers', icon:'👮' },
+            { id:'asean', name:'ASEAN Flags', icon:'🏳️' },
+            { id:'christmas', name:'Christmas', icon:'🎄' },
+            { id:'bible', name:'Bible Lessons', icon:'✝️' }
+        ];
+
+        const VOCAB = {
+            alphabet: ['A🐜','B🐻','C🐱','D🐶','E🐘','F🐟','G🐐','H🐴','I🦎','J🐦','K🐨','L🦁','M🐭','N🐮','O🦉','P🐧','Q🐥','R🐰','S🐍','T🐯','U🐤','V🦜','W🐳','X🦊','Y🐼','Z🐻‍❄️'],
+            numbers: ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','1️⃣1️⃣','1️⃣2️⃣','1️⃣3️⃣','1️⃣4️⃣','1️⃣5️⃣','1️⃣6️⃣','1️⃣7️⃣','1️⃣8️⃣','1️⃣9️⃣','2️⃣0️⃣'],
+            colors: ['🔴Red','🟠Orange','🟡Yellow','🟢Green','🔵Blue','🟣Purple','⚫Black','⚪White','🟤Brown','🩷Pink'],
+            shapes: ['🔺Triangle','⬛Square','🔵Circle','⬟Diamond','⭐Star','❤️Heart','🟦Rectangle','⬠Pentagon'],
+            fruits: ['🍎Apple','🍌Banana','🍇Grapes','🍊Orange','🍓Strawberry','🍉Watermelon','🥝Kiwi','🍑Peach','🍒Cherry','🍍Pineapple'],
+            vegetables: ['🥕Carrot','🥦Broccoli','🍅Tomato','🥒Cucumber','🌽Corn','🫑Pepper','🧅Onion','🥬Lettuce','🍆Eggplant','🧄Garlic'],
+            farm: ['🐄Cow','🐖Pig','🐑Sheep','🐔Chicken','🦆Duck','🐐Goat','🐕Dog','🐈Cat','🐴Horse','🐇Rabbit'],
+            wild: ['🦁Lion','🐘Elephant','🦒Giraffe','🐅Tiger','🐻Bear','🦊Fox','🐺Wolf','🦍Gorilla','🦓Zebra','🦏Rhino'],
+            transport: ['🚗Car','🚌Bus','🚲Bicycle','✈️Airplane','🚢Ship','🚂Train','🛴Scooter','🚁Helicopter','🚑Ambulance','🚒Fire Truck'],
+            weather: ['☀️Sunny','⛅Cloudy','🌧️Rainy','❄️Snowy','🌩️Stormy','🌈Rainbow','💨Windy','🌫️Foggy','☔Umbrella','🌤️Partly Sunny'],
+            family: ['👨Father','👩Mother','👦Brother','👧Sister','👴Grandpa','👵Grandma','👶Baby','🐕Pet','👨‍👩‍👦Family','👪Family'],
+            body: ['👀Eyes','👂Ears','👃Nose','👄Mouth','🦷Teeth','💪Arm','🦵Leg','🖐️Hand','🦶Foot','🧠Brain'],
+            feelings: ['😊Happy','😢Sad','😡Angry','😨Scared','😲Surprised','😌Calm','🥰Loved','😆Silly','😴Tired','😁Excited'],
+            goodfood: ['🍎Apple (good)','🥦Broccoli (good)','🍔Burger (bad)','🍟Fries (bad)','🥗Salad (good)','🍩Donut (bad)','🥕Carrot (good)','🍕Pizza (bad)','🍇Grapes (good)','🍪Cookie (bad)'],
+            clothes: ['👕Shirt','👖Pants','👗Dress','🧥Jacket','🧣Scarf','🧤Gloves','👟Shoes','👠Heels','🧢Cap','👒Hat'],
+            helpers: ['👮Police','👨‍⚕️Doctor','🧑‍🏫Teacher','👩‍🍳Chef','🧑‍🚒Firefighter','👩‍🌾Farmer','👨‍🔧Mechanic','👩‍💼Nurse','👨‍✈️Pilot','🧑‍🎓Student'],
+            asean: ['🇮🇩Indonesia','🇲🇾Malaysia','🇸🇬Singapore','🇵🇭Philippines','🇹🇭Thailand','🇻🇳Vietnam','🇧🇳Brunei','🇰🇭Cambodia','🇱🇦Laos','🇲🇲Myanmar'],
+            christmas: ['🎄Tree','🎅Santa','🦌Reindeer','🎁Gift','☃️Snowman','🔔Bell','⭐Star','🧦Stocking','🕯️Candle','🍪Cookie'],
+            bible: ['✝️Cross','📖Bible','🙏Pray','❤️Love','🕊️Dove','🐑Lamb','🌟Star','👑Crown','🍞Bread','💧Water']
+        };
+
+        function getPracticeQuestions(topicId) {
+            const all = {
+                alphabet: [
+                    { q: 'Which letter is first?', options: ['A', 'B', 'C'], answer: 0 },
+                    { q: 'Which letter is last?', options: ['X', 'Y', 'Z'], answer: 2 },
+                    { q: 'Which letter makes the sound "ah"?', options: ['A', 'E', 'I'], answer: 0 },
+                    { q: 'Which letter is in "cat"?', options: ['A', 'C', 'T'], answer: 1 },
+                    { q: 'Which letter is round?', options: ['O', 'S', 'T'], answer: 0 },
+                    { q: 'Which letter has 3 lines?', options: ['A', 'M', 'N'], answer: 0 },
+                    { q: 'Which letter is in "dog"?', options: ['D', 'G', 'O'], answer: 0 },
+                    { q: 'Which letter is in "fish"?', options: ['F', 'H', 'S'], answer: 0 },
+                    { q: 'Which letter is in "ball"?', options: ['B', 'L', 'A'], answer: 0 },
+                    { q: 'Which letter is in "sun"?', options: ['S', 'U', 'N'], answer: 0 },
+                    { q: 'Which letter is a vowel?', options: ['A', 'B', 'C'], answer: 0 },
+                    { q: 'Which letter is in "tree"?', options: ['T', 'R', 'E'], answer: 0 }
+                ],
+                numbers: [
+                    { q: 'How many fingers on one hand?', options: ['3', '5', '10'], answer: 1 },
+                    { q: 'What number comes after 5?', options: ['4', '6', '7'], answer: 1 },
+                    { q: 'What number is this? 🐶🐶 (2 dogs)', options: ['1', '2', '3'], answer: 1 },
+                    { q: 'How many legs does a cat have?', options: ['2', '4', '6'], answer: 1 },
+                    { q: 'What number comes before 10?', options: ['8', '9', '11'], answer: 1 },
+                    { q: 'Count: 1, 2, 3, __, 5', options: ['4', '6', '7'], answer: 0 },
+                    { q: 'How many eyes do you have?', options: ['1', '2', '3'], answer: 1 },
+                    { q: 'What number is 3 + 2?', options: ['4', '5', '6'], answer: 1 },
+                    { q: 'How many wheels on a bicycle?', options: ['1', '2', '3'], answer: 1 },
+                    { q: 'What number is 5 - 2?', options: ['2', '3', '4'], answer: 1 },
+                    { q: 'Count the stars: ★★★', options: ['2', '3', '4'], answer: 1 },
+                    { q: 'How many months in a year?', options: ['10', '12', '14'], answer: 1 }
+                ],
+                colors: [
+                    { q: 'What color is the sun?', options: ['Red', 'Yellow', 'Blue'], answer: 1 },
+                    { q: 'What color is grass?', options: ['Green', 'Blue', 'Red'], answer: 0 },
+                    { q: 'What color is the sky?', options: ['Green', 'Blue', 'Yellow'], answer: 1 },
+                    { q: 'What color is an apple?', options: ['Red', 'Blue', 'Green'], answer: 0 },
+                    { q: 'What color is a banana?', options: ['Red', 'Yellow', 'Blue'], answer: 1 },
+                    { q: 'What color is snow?', options: ['White', 'Black', 'Blue'], answer: 0 },
+                    { q: 'What color is a strawberry?', options: ['Red', 'Yellow', 'Green'], answer: 0 },
+                    { q: 'What color is the night sky?', options: ['Blue', 'Black', 'White'], answer: 1 },
+                    { q: 'What color is a leaf?', options: ['Green', 'Red', 'Blue'], answer: 0 },
+                    { q: 'What color is an orange?', options: ['Orange', 'Red', 'Yellow'], answer: 0 },
+                    { q: 'What color is a pig?', options: ['Pink', 'Blue', 'Green'], answer: 0 },
+                    { q: 'What color is chocolate?', options: ['Brown', 'White', 'Black'], answer: 0 }
+                ],
+                shapes: [
+                    { q: 'Which shape has 3 sides?', options: ['Square', 'Triangle', 'Circle'], answer: 1 },
+                    { q: 'Which shape is round?', options: ['Square', 'Triangle', 'Circle'], answer: 2 },
+                    { q: 'Which shape has 4 sides?', options: ['Triangle', 'Circle', 'Square'], answer: 2 },
+                    { q: 'Which shape is a star?', options: ['⭐', '🔵', '⬛'], answer: 0 },
+                    { q: 'Which shape is a heart?', options: ['❤️', '⭐', '🔺'], answer: 0 },
+                    { q: 'Which shape has 4 equal sides?', options: ['Rectangle', 'Square', 'Triangle'], answer: 1 },
+                    { q: 'Which shape is like a ball?', options: ['Square', 'Circle', 'Triangle'], answer: 1 },
+                    { q: 'Which shape is a diamond?', options: ['⬟', '⬛', '🔺'], answer: 0 },
+                    { q: 'Which shape has 5 sides?', options: ['Square', 'Pentagon', 'Triangle'], answer: 1 },
+                    { q: 'Which shape is like a door?', options: ['Circle', 'Rectangle', 'Triangle'], answer: 1 },
+                    { q: 'Which shape is the sun?', options: ['Circle', 'Square', 'Triangle'], answer: 0 },
+                    { q: 'Which shape is a stop sign?', options: ['Circle', 'Triangle', 'Octagon'], answer: 2 }
+                ],
+                fruits: [
+                    { q: 'Which one is an apple?', options: ['🍎', '🍌', '🍇'], answer: 0 },
+                    { q: 'Which fruit is yellow?', options: ['🍎', '🍌', '🍇'], answer: 1 },
+                    { q: 'Which fruit is red?', options: ['🍎', '🍌', '🍊'], answer: 0 },
+                    { q: 'Which fruit is orange?', options: ['🍎', '🍊', '🍇'], answer: 1 },
+                    { q: 'Which fruit is green?', options: ['🍎', '🍇', '🍌'], answer: 1 },
+                    { q: 'Which fruit is a berry?', options: ['🍎', '🍓', '🍊'], answer: 1 },
+                    { q: 'Which fruit has a pit?', options: ['🍎', '🍑', '🍌'], answer: 1 },
+                    { q: 'Which fruit is tropical?', options: ['🍎', '🍍', '🍇'], answer: 1 },
+                    { q: 'Which fruit is small and round?', options: ['🍇', '🍎', '🍌'], answer: 0 },
+                    { q: 'Which fruit is long?', options: ['🍎', '🍌', '🍊'], answer: 1 },
+                    { q: 'Which fruit is juicy?', options: ['🍎', '🍊', '🍇'], answer: 1 },
+                    { q: 'Which fruit is sweet?', options: ['🍎', '🍌', 'All of these'], answer: 2 }
+                ],
+                vegetables: [
+                    { q: 'Which one is a carrot?', options: ['🥕', '🥦', '🍅'], answer: 0 },
+                    { q: 'Which vegetable is green?', options: ['🥕', '🥦', '🍅'], answer: 1 },
+                    { q: 'Which vegetable is red?', options: ['🥕', '🥦', '🍅'], answer: 2 },
+                    { q: 'Which vegetable is a leaf?', options: ['🥕', '🥬', '🥦'], answer: 1 },
+                    { q: 'Which vegetable is a root?', options: ['🥕', '🥦', '🍅'], answer: 0 },
+                    { q: 'Which vegetable is a flower?', options: ['🥕', '🥦', '🌽'], answer: 1 },
+                    { q: 'Which vegetable is a fruit?', options: ['🥕', '🍅', '🥦'], answer: 1 },
+                    { q: 'Which vegetable is yellow?', options: ['🌽', '🥕', '🥦'], answer: 0 },
+                    { q: 'Which vegetable is a bulb?', options: ['🧅', '🥕', '🥦'], answer: 0 },
+                    { q: 'Which vegetable is a stem?', options: ['🥬', '🥦', '🧅'], answer: 1 },
+                    { q: 'Which vegetable is a seed?', options: ['🌽', '🥕', '🥦'], answer: 0 },
+                    { q: 'Which vegetable is purple?', options: ['🍆', '🥕', '🥦'], answer: 0 }
+                ],
+                farm: [
+                    { q: 'Which animal says "moo"?', options: ['🐄', '🐖', '🐔'], answer: 0 },
+                    { q: 'Which animal lives on a farm?', options: ['🦁', '🐄', '🐘'], answer: 1 },
+                    { q: 'Which animal gives milk?', options: ['🐄', '🐖', '🐔'], answer: 0 },
+                    { q: 'Which animal has feathers?', options: ['🐄', '🐔', '🐖'], answer: 1 },
+                    { q: 'Which animal is pink?', options: ['🐄', '🐖', '🐔'], answer: 1 },
+                    { q: 'Which animal says "oink"?', options: ['🐄', '🐖', '🐔'], answer: 1 },
+                    { q: 'Which animal has wool?', options: ['🐄', '🐑', '🐔'], answer: 1 },
+                    { q: 'Which animal is a pet?', options: ['🐄', '🐕', '🐖'], answer: 1 },
+                    { q: 'Which animal has a mane?', options: ['🐄', '🐴', '🐖'], answer: 1 },
+                    { q: 'Which animal has a beak?', options: ['🐄', '🐔', '🐖'], answer: 1 },
+                    { q: 'Which animal is big?', options: ['🐄', '🐖', '🐔'], answer: 0 },
+                    { q: 'Which animal has a tail?', options: ['🐄', '🐖', 'All of these'], answer: 2 }
+                ],
+                wild: [
+                    { q: 'Which animal is the king of the jungle?', options: ['🦁', '🐘', '🦒'], answer: 0 },
+                    { q: 'Which animal has a long neck?', options: ['🦁', '🐘', '🦒'], answer: 2 },
+                    { q: 'Which animal is big and grey?', options: ['🦁', '🐘', '🦒'], answer: 1 },
+                    { q: 'Which animal has stripes?', options: ['🦁', '🐅', '🐘'], answer: 1 },
+                    { q: 'Which animal is a bear?', options: ['🐻', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal is a monkey?', options: ['🐒', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal is a bird?', options: ['🦅', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal has a trunk?', options: ['🦁', '🐘', '🦒'], answer: 1 },
+                    { q: 'Which animal is a reptile?', options: ['🐍', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal has spots?', options: ['🦒', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal is fast?', options: ['🐆', '🦁', '🐘'], answer: 0 },
+                    { q: 'Which animal is a mammal?', options: ['🦁', '🐍', '🦅'], answer: 0 }
+                ],
+                transport: [
+                    { q: 'Which one flies in the sky?', options: ['🚗', '✈️', '🚢'], answer: 1 },
+                    { q: 'Which one goes on water?', options: ['🚗', '✈️', '🚢'], answer: 2 },
+                    { q: 'Which one has 2 wheels?', options: ['🚗', '🚲', '🚢'], answer: 1 },
+                    { q: 'Which one is a car?', options: ['🚗', '✈️', '🚢'], answer: 0 },
+                    { q: 'Which one is a bus?', options: ['🚌', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one is a train?', options: ['🚂', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one is a helicopter?', options: ['🚁', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one is a fire truck?', options: ['🚒', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one is an ambulance?', options: ['🚑', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one has 4 wheels?', options: ['🚗', '🚲', '✈️'], answer: 0 },
+                    { q: 'Which one is a bicycle?', options: ['🚲', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which one is a ship?', options: ['🚢', '🚗', '✈️'], answer: 0 }
+                ],
+                weather: [
+                    { q: 'What do we see when it rains?', options: ['☀️', '☔', '⛅'], answer: 1 },
+                    { q: 'What is hot and bright?', options: ['☀️', '🌧️', '❄️'], answer: 0 },
+                    { q: 'What is cold and white?', options: ['☀️', '🌧️', '❄️'], answer: 2 },
+                    { q: 'What do we see after rain?', options: ['☀️', '🌈', '⛅'], answer: 1 },
+                    { q: 'What is a storm?', options: ['🌩️', '☀️', '⛅'], answer: 0 },
+                    { q: 'What is a cloud?', options: ['☁️', '☀️', '🌧️'], answer: 0 },
+                    { q: 'What is a rainbow?', options: ['🌈', '☀️', '🌧️'], answer: 0 },
+                    { q: 'What is wind?', options: ['💨', '☀️', '🌧️'], answer: 0 },
+                    { q: 'What is fog?', options: ['🌫️', '☀️', '🌧️'], answer: 0 },
+                    { q: 'What is the sun?', options: ['☀️', '🌧️', '❄️'], answer: 0 },
+                    { q: 'What is rain?', options: ['🌧️', '☀️', '❄️'], answer: 0 },
+                    { q: 'What is snow?', options: ['❄️', '☀️', '🌧️'], answer: 0 }
+                ],
+                family: [
+                    { q: 'Who is your mother?', options: ['👩', '👨', '👦'], answer: 0 },
+                    { q: 'Who is your father?', options: ['👩', '👨', '👦'], answer: 1 },
+                    { q: 'Who is a brother?', options: ['👨', '👦', '👩'], answer: 1 },
+                    { q: 'Who is a sister?', options: ['👨', '👧', '👩'], answer: 1 },
+                    { q: 'Who is a grandpa?', options: ['👴', '👵', '👨'], answer: 0 },
+                    { q: 'Who is a grandma?', options: ['👴', '👵', '👩'], answer: 1 },
+                    { q: 'Who is a baby?', options: ['👶', '👦', '👧'], answer: 0 },
+                    { q: 'Who is a parent?', options: ['👨👩', '👦👧', '👴👵'], answer: 0 },
+                    { q: 'Who is a sibling?', options: ['👦👧', '👨👩', '👴👵'], answer: 0 },
+                    { q: 'Who is family?', options: ['👪', '👨', '👩'], answer: 0 },
+                    { q: 'Who is a son?', options: ['👦', '👧', '👶'], answer: 0 },
+                    { q: 'Who is a daughter?', options: ['👦', '👧', '👶'], answer: 1 }
+                ],
+                body: [
+                    { q: 'What do you use to see?', options: ['👀', '👂', '👃'], answer: 0 },
+                    { q: 'What do you use to hear?', options: ['👀', '👂', '👃'], answer: 1 },
+                    { q: 'What do you use to smell?', options: ['👀', '👂', '👃'], answer: 2 },
+                    { q: 'What do you use to eat?', options: ['👄', '👀', '👂'], answer: 0 },
+                    { q: 'What do you use to walk?', options: ['🦵', '💪', '🖐️'], answer: 0 },
+                    { q: 'What do you use to clap?', options: ['🖐️', '🦵', '💪'], answer: 0 },
+                    { q: 'What do you use to think?', options: ['🧠', '❤️', '💪'], answer: 0 },
+                    { q: 'What is in your mouth?', options: ['🦷', '👀', '👂'], answer: 0 },
+                    { q: 'What do you have 2 of?', options: ['👀', '👃', '👄'], answer: 0 },
+                    { q: 'What do you have 1 of?', options: ['👃', '👀', '👂'], answer: 0 },
+                    { q: 'What is a finger?', options: ['🖐️', '🦵', '💪'], answer: 0 },
+                    { q: 'What is a toe?', options: ['🦶', '🖐️', '💪'], answer: 0 }
+                ],
+                feelings: [
+                    { q: 'How do you feel when you get a gift?', options: ['😊', '😢', '😡'], answer: 0 },
+                    { q: 'How do you feel when you fall?', options: ['😊', '😢', '😡'], answer: 1 },
+                    { q: 'How do you feel when someone takes your toy?', options: ['😊', '😢', '😡'], answer: 2 },
+                    { q: 'How do you feel when you see a monster?', options: ['😨', '😊', '😡'], answer: 0 },
+                    { q: 'How do you feel when you see a surprise?', options: ['😲', '😊', '😢'], answer: 0 },
+                    { q: 'How do you feel when you are quiet?', options: ['😌', '😊', '😡'], answer: 0 },
+                    { q: 'How do you feel when you are loved?', options: ['🥰', '😊', '😢'], answer: 0 },
+                    { q: 'How do you feel when you are silly?', options: ['😆', '😊', '😢'], answer: 0 },
+                    { q: 'How do you feel when you are tired?', options: ['😴', '😊', '😡'], answer: 0 },
+                    { q: 'How do you feel when you are excited?', options: ['😁', '😊', '😢'], answer: 0 },
+                    { q: 'How do you feel when you are sad?', options: ['😢', '😊', '😡'], answer: 0 },
+                    { q: 'How do you feel when you are happy?', options: ['😊', '😢', '😡'], answer: 0 }
+                ],
+                goodfood: [
+                    { q: 'Which is good for you?', options: ['🍔', '🥗', '🍟'], answer: 1 },
+                    { q: 'Which is bad for you?', options: ['🥕', '🍩', '🥦'], answer: 1 },
+                    { q: 'Which is a fruit?', options: ['🍎', '🍔', '🍟'], answer: 0 },
+                    { q: 'Which is a vegetable?', options: ['🥦', '🍔', '🍩'], answer: 0 },
+                    { q: 'Which is a junk food?', options: ['🥗', '🍕', '🥕'], answer: 1 },
+                    { q: 'Which is healthy?', options: ['🥕', '🍔', '🍟'], answer: 0 },
+                    { q: 'Which is unhealthy?', options: ['🥗', '🍕', '🥦'], answer: 1 },
+                    { q: 'Which is a drink?', options: ['🥤', '🍎', '🥦'], answer: 0 },
+                    { q: 'Which is a snack?', options: ['🍪', '🥗', '🥦'], answer: 0 },
+                    { q: 'Which is a meal?', options: ['🍔', '🍎', '🥕'], answer: 0 },
+                    { q: 'Which is a dessert?', options: ['🍩', '🥗', '🥦'], answer: 0 },
+                    { q: 'Which is a salad?', options: ['🥗', '🍔', '🍟'], answer: 0 }
+                ],
+                clothes: [
+                    { q: 'What do you wear on your head?', options: ['🧢', '👟', '👕'], answer: 0 },
+                    { q: 'What do you wear on your feet?', options: ['🧢', '👟', '👕'], answer: 1 },
+                    { q: 'What do you wear on your body?', options: ['🧢', '👟', '👕'], answer: 2 },
+                    { q: 'What do you wear when it is cold?', options: ['🧥', '👕', '👟'], answer: 0 },
+                    { q: 'What do you wear on your hands?', options: ['🧤', '👟', '👕'], answer: 0 },
+                    { q: 'What is a dress?', options: ['👗', '👕', '👟'], answer: 0 },
+                    { q: 'What is a scarf?', options: ['🧣', '👕', '👟'], answer: 0 },
+                    { q: 'What is a hat?', options: ['🧢', '👟', '👕'], answer: 0 },
+                    { q: 'What is a shoe?', options: ['👟', '🧢', '👕'], answer: 0 },
+                    { q: 'What is a shirt?', options: ['👕', '👟', '🧢'], answer: 0 },
+                    { q: 'What is a coat?', options: ['🧥', '👕', '👟'], answer: 0 },
+                    { q: 'What are pants?', options: ['👖', '👕', '👟'], answer: 0 }
+                ],
+                helpers: [
+                    { q: 'Who helps sick people?', options: ['👨‍⚕️', '👮', '🧑‍🏫'], answer: 0 },
+                    { q: 'Who teaches students?', options: ['👨‍⚕️', '👮', '🧑‍🏫'], answer: 2 },
+                    { q: 'Who catches criminals?', options: ['👨‍⚕️', '👮', '🧑‍🏫'], answer: 1 },
+                    { q: 'Who cooks food?', options: ['👩‍🍳', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who puts out fires?', options: ['🧑‍🚒', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who grows food?', options: ['👩‍🌾', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who fixes cars?', options: ['👨‍🔧', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who helps in hospital?', options: ['👩‍⚕️', '👨‍⚕️', 'Both'], answer: 2 },
+                    { q: 'Who flies a plane?', options: ['👨‍✈️', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who is a student?', options: ['🧑‍🎓', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who drives a fire truck?', options: ['🧑‍🚒', '👨‍⚕️', '👮'], answer: 0 },
+                    { q: 'Who works in a school?', options: ['🧑‍🏫', '👨‍⚕️', '👮'], answer: 0 }
+                ],
+                asean: [
+                    { q: 'Which flag has a star?', options: ['🇸🇬', '🇮🇩', '🇲🇾'], answer: 0 },
+                    { q: 'Which country is in ASEAN?', options: ['🇹🇭', '🇺🇸', '🇬🇧'], answer: 0 },
+                    { q: 'Which flag is red and white?', options: ['🇮🇩', '🇸🇬', '🇵🇭'], answer: 0 },
+                    { q: 'Which country is an island?', options: ['🇸🇬', '🇹🇭', '🇻🇳'], answer: 0 },
+                    { q: 'Which flag has a moon?', options: ['🇸🇬', '🇲🇾', '🇵🇭'], answer: 1 },
+                    { q: 'Which country is in ASEAN?', options: ['🇵🇭', '🇨🇳', '🇯🇵'], answer: 0 },
+                    { q: 'Which flag has stripes?', options: ['🇹🇭', '🇸🇬', '🇮🇩'], answer: 0 },
+                    { q: 'Which country is a kingdom?', options: ['🇹🇭', '🇸🇬', '🇮🇩'], answer: 0 },
+                    { q: 'Which flag has a sun?', options: ['🇵🇭', '🇸🇬', '🇲🇾'], answer: 0 },
+                    { q: 'Which country is in ASEAN?', options: ['🇻🇳', '🇰🇷', '🇯🇵'], answer: 0 },
+                    { q: 'Which flag is blue?', options: ['🇸🇬', '🇹🇭', '🇮🇩'], answer: 0 },
+                    { q: 'Which country is a city?', options: ['🇸🇬', '🇹🇭', '🇻🇳'], answer: 0 }
+                ],
+                christmas: [
+                    { q: 'What is decorated with lights?', options: ['🎄', '🎅', '🦌'], answer: 0 },
+                    { q: 'Who brings gifts?', options: ['🎅', '🦌', '☃️'], answer: 0 },
+                    { q: 'What pulls Santa\'s sleigh?', options: ['🦌', '🎅', '☃️'], answer: 0 },
+                    { q: 'What is a gift?', options: ['🎁', '🎄', '🦌'], answer: 0 },
+                    { q: 'What is made of snow?', options: ['☃️', '🎅', '🦌'], answer: 0 },
+                    { q: 'What rings?', options: ['🔔', '🎄', '🎅'], answer: 0 },
+                    { q: 'What is a star?', options: ['⭐', '🎄', '🎅'], answer: 0 },
+                    { q: 'What is hung for gifts?', options: ['🧦', '🎄', '🎅'], answer: 0 },
+                    { q: 'What is a candle?', options: ['🕯️', '🎄', '🎅'], answer: 0 },
+                    { q: 'What is a cookie?', options: ['🍪', '🎄', '🎅'], answer: 0 },
+                    { q: 'What is a tree?', options: ['🎄', '🎅', '🦌'], answer: 0 },
+                    { q: 'What is a reindeer?', options: ['🦌', '🎅', '☃️'], answer: 0 }
+                ],
+                bible: [
+                    { q: 'What is the holy book?', options: ['📖', '📕', '📗'], answer: 0 },
+                    { q: 'What is a cross?', options: ['✝️', '❤️', '🕊️'], answer: 0 },
+                    { q: 'What is a dove?', options: ['🕊️', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is love?', options: ['❤️', '✝️', '🕊️'], answer: 0 },
+                    { q: 'What is a lamb?', options: ['🐑', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is a crown?', options: ['👑', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is bread?', options: ['🍞', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is water?', options: ['💧', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is a star?', options: ['🌟', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is prayer?', options: ['🙏', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is a temple?', options: ['🏛️', '✝️', '❤️'], answer: 0 },
+                    { q: 'What is faith?', options: ['✨', '✝️', '❤️'], answer: 0 }
+                ],
+                default: [
+                    { q: 'Which is a fruit?', options: ['🍎', '🍔', '🍟'], answer: 0 },
+                    { q: 'Which is an animal?', options: ['🐄', '🚗', '✈️'], answer: 0 },
+                    { q: 'Which is a color?', options: ['🔴', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a shape?', options: ['🔺', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a vegetable?', options: ['🥕', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a number?', options: ['5️⃣', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a family member?', options: ['👨', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a body part?', options: ['👀', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a feeling?', options: ['😊', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a helper?', options: ['👮', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a country?', options: ['🇸🇬', '🍎', '🐄'], answer: 0 },
+                    { q: 'Which is a Christmas item?', options: ['🎄', '🍎', '🐄'], answer: 0 }
+                ]
+            };
+            return all[topicId] || all.default;
+        }
+
+        function getWorksheetQuestions(topicId) {
+            const all = {
+                alphabet: [
+                    { q: 'Write the first letter: A', a: 'a' },
+                    { q: 'Write the last letter: Z', a: 'z' },
+                    { q: 'Write the letter that starts "cat"', a: 'c' },
+                    { q: 'Write the letter that starts "dog"', a: 'd' },
+                    { q: 'Write the letter that starts "fish"', a: 'f' },
+                    { q: 'Write the letter that starts "ball"', a: 'b' },
+                    { q: 'Write the letter that starts "sun"', a: 's' },
+                    { q: 'Write the letter that starts "tree"', a: 't' },
+                    { q: 'Write the letter that starts "apple"', a: 'a' },
+                    { q: 'Write the letter that starts "rain"', a: 'r' },
+                    { q: 'Write the letter that starts "moon"', a: 'm' },
+                    { q: 'Write the letter that starts "star"', a: 's' }
+                ],
+                numbers: [
+                    { q: 'Write the number of fingers on one hand', a: '5' },
+                    { q: 'Write the number after 5', a: '6' },
+                    { q: 'Write the number before 10', a: '9' },
+                    { q: 'Write 3 + 2', a: '5' },
+                    { q: 'Write 5 - 2', a: '3' },
+                    { q: 'Write the number of legs on a cat', a: '4' },
+                    { q: 'Write the number of wheels on a car', a: '4' },
+                    { q: 'Write the number of eyes you have', a: '2' },
+                    { q: 'Write the number of months in a year', a: '12' },
+                    { q: 'Write the number of seasons', a: '4' },
+                    { q: 'Write the number of days in a week', a: '7' },
+                    { q: 'Write the number of colors in a rainbow', a: '7' }
+                ],
+                colors: [
+                    { q: 'Color of the sun is ____', a: 'yellow' },
+                    { q: 'Color of grass is ____', a: 'green' },
+                    { q: 'Color of the sky is ____', a: 'blue' },
+                    { q: 'Color of an apple is ____', a: 'red' },
+                    { q: 'Color of a banana is ____', a: 'yellow' },
+                    { q: 'Color of snow is ____', a: 'white' },
+                    { q: 'Color of a strawberry is ____', a: 'red' },
+                    { q: 'Color of the night is ____', a: 'black' },
+                    { q: 'Color of a leaf is ____', a: 'green' },
+                    { q: 'Color of an orange is ____', a: 'orange' },
+                    { q: 'Color of a pig is ____', a: 'pink' },
+                    { q: 'Color of chocolate is ____', a: 'brown' }
+                ],
+                shapes: [
+                    { q: 'A shape with 3 sides is a ____', a: 'triangle' },
+                    { q: 'A round shape is a ____', a: 'circle' },
+                    { q: 'A shape with 4 sides is a ____', a: 'square' },
+                    { q: 'A shape with 5 sides is a ____', a: 'pentagon' },
+                    { q: 'A shape like a ball is a ____', a: 'circle' },
+                    { q: 'A shape like a door is a ____', a: 'rectangle' },
+                    { q: 'A shape like a star is a ____', a: 'star' },
+                    { q: 'A shape like a heart is a ____', a: 'heart' },
+                    { q: 'A shape like a diamond is a ____', a: 'diamond' },
+                    { q: 'A shape with 6 sides is a ____', a: 'hexagon' },
+                    { q: 'A shape with 8 sides is an ____', a: 'octagon' },
+                    { q: 'A shape that is long is a ____', a: 'rectangle' }
+                ],
+                fruits: [
+                    { q: 'A red fruit is an ____', a: 'apple' },
+                    { q: 'A yellow fruit is a ____', a: 'banana' },
+                    { q: 'An orange fruit is an ____', a: 'orange' },
+                    { q: 'A green fruit is a ____', a: 'grape' },
+                    { q: 'A sweet red fruit is a ____', a: 'strawberry' },
+                    { q: 'A big green fruit is a ____', a: 'watermelon' },
+                    { q: 'A fuzzy fruit is a ____', a: 'peach' },
+                    { q: 'A tropical fruit is a ____', a: 'pineapple' },
+                    { q: 'A small round fruit is a ____', a: 'grape' },
+                    { q: 'A long fruit is a ____', a: 'banana' },
+                    { q: 'A juicy fruit is an ____', a: 'orange' },
+                    { q: 'A fruit with a pit is a ____', a: 'peach' }
+                ],
+                vegetables: [
+                    { q: 'An orange vegetable is a ____', a: 'carrot' },
+                    { q: 'A green vegetable is ____', a: 'broccoli' },
+                    { q: 'A red vegetable is a ____', a: 'tomato' },
+                    { q: 'A green leafy vegetable is ____', a: 'lettuce' },
+                    { q: 'A yellow vegetable is ____', a: 'corn' },
+                    { q: 'A purple vegetable is an ____', a: 'eggplant' },
+                    { q: 'A bulb vegetable is an ____', a: 'onion' },
+                    { q: 'A stem vegetable is ____', a: 'celery' },
+                    { q: 'A root vegetable is a ____', a: 'carrot' },
+                    { q: 'A flower vegetable is ____', a: 'broccoli' },
+                    { q: 'A green bean is a ____', a: 'bean' },
+                    { q: 'A pepper is a ____', a: 'pepper' }
+                ],
+                farm: [
+                    { q: 'Animal that says moo is a ____', a: 'cow' },
+                    { q: 'Animal that says oink is a ____', a: 'pig' },
+                    { q: 'Animal that gives wool is a ____', a: 'sheep' },
+                    { q: 'Animal that lays eggs is a ____', a: 'chicken' },
+                    { q: 'Animal that says quack is a ____', a: 'duck' },
+                    { q: 'Animal that gives milk is a ____', a: 'cow' },
+                    { q: 'Animal that is a pet is a ____', a: 'dog' },
+                    { q: 'Animal that is a pet is a ____', a: 'cat' },
+                    { q: 'Animal that has a mane is a ____', a: 'horse' },
+                    { q: 'Animal that has floppy ears is a ____', a: 'rabbit' },
+                    { q: 'Animal that has horns is a ____', a: 'goat' },
+                    { q: 'Animal that is pink is a ____', a: 'pig' }
+                ],
+                wild: [
+                    { q: 'King of the jungle is a ____', a: 'lion' },
+                    { q: 'Animal with a long neck is a ____', a: 'giraffe' },
+                    { q: 'Big grey animal is an ____', a: 'elephant' },
+                    { q: 'Animal with stripes is a ____', a: 'tiger' },
+                    { q: 'Animal with a trunk is an ____', a: 'elephant' },
+                    { q: 'Animal that is a bear is a ____', a: 'bear' },
+                    { q: 'Animal that is a monkey is a ____', a: 'monkey' },
+                    { q: 'Animal that is a bird is an ____', a: 'eagle' },
+                    { q: 'Animal that is a reptile is a ____', a: 'snake' },
+                    { q: 'Animal that has spots is a ____', a: 'giraffe' },
+                    { q: 'Animal that is fast is a ____', a: 'cheetah' },
+                    { q: 'Animal that is a mammal is a ____', a: 'lion' }
+                ],
+                transport: [
+                    { q: 'Flies in the sky is a ____', a: 'airplane' },
+                    { q: 'Goes on water is a ____', a: 'ship' },
+                    { q: 'Has 2 wheels is a ____', a: 'bicycle' },
+                    { q: 'Has 4 wheels is a ____', a: 'car' },
+                    { q: 'Carries many people is a ____', a: 'bus' },
+                    { q: 'Goes on tracks is a ____', a: 'train' },
+                    { q: 'Flies with blades is a ____', a: 'helicopter' },
+                    { q: 'Puts out fires is a ____', a: 'fire truck' },
+                    { q: 'Takes sick people is an ____', a: 'ambulance' },
+                    { q: 'Is a scooter is a ____', a: 'scooter' },
+                    { q: 'Is a boat is a ____', a: 'boat' },
+                    { q: 'Is a rocket is a ____', a: 'rocket' }
+                ],
+                weather: [
+                    { q: 'When it rains we use an ____', a: 'umbrella' },
+                    { q: 'Hot and bright is ____', a: 'sunny' },
+                    { q: 'Cold and white is ____', a: 'snowy' },
+                    { q: 'After rain we see a ____', a: 'rainbow' },
+                    { q: 'A storm is ____', a: 'stormy' },
+                    { q: 'A cloud is ____', a: 'cloudy' },
+                    { q: 'Wind is ____', a: 'windy' },
+                    { q: 'Fog is ____', a: 'foggy' },
+                    { q: 'Partly sunny is ____', a: 'partly cloudy' },
+                    { q: 'Lightning is ____', a: 'stormy' },
+                    { q: 'Thunder is ____', a: 'stormy' },
+                    { q: 'A typhoon is a ____', a: 'storm' }
+                ],
+                family: [
+                    { q: 'Your mother is a ____', a: 'mom' },
+                    { q: 'Your father is a ____', a: 'dad' },
+                    { q: 'Your brother is a ____', a: 'brother' },
+                    { q: 'Your sister is a ____', a: 'sister' },
+                    { q: 'Your grandpa is a ____', a: 'grandpa' },
+                    { q: 'Your grandma is a ____', a: 'grandma' },
+                    { q: 'A baby is a ____', a: 'baby' },
+                    { q: 'A pet is a ____', a: 'pet' },
+                    { q: 'Your parents are your ____', a: 'parents' },
+                    { q: 'Your siblings are your ____', a: 'siblings' },
+                    { q: 'Your family is your ____', a: 'family' },
+                    { q: 'A son is a ____', a: 'son' }
+                ],
+                body: [
+                    { q: 'You see with your ____', a: 'eyes' },
+                    { q: 'You hear with your ____', a: 'ears' },
+                    { q: 'You smell with your ____', a: 'nose' },
+                    { q: 'You eat with your ____', a: 'mouth' },
+                    { q: 'You walk with your ____', a: 'legs' },
+                    { q: 'You clap with your ____', a: 'hands' },
+                    { q: 'You think with your ____', a: 'brain' },
+                    { q: 'You have teeth in your ____', a: 'mouth' },
+                    { q: 'You have 2 of these: ____', a: 'eyes' },
+                    { q: 'You have 1 of these: ____', a: 'nose' },
+                    { q: 'Your fingers are on your ____', a: 'hands' },
+                    { q: 'Your toes are on your ____', a: 'feet' }
+                ],
+                feelings: [
+                    { q: 'When you get a gift you feel ____', a: 'happy' },
+                    { q: 'When you fall you feel ____', a: 'sad' },
+                    { q: 'When someone takes your toy you feel ____', a: 'angry' },
+                    { q: 'When you see a monster you feel ____', a: 'scared' },
+                    { q: 'When you see a surprise you feel ____', a: 'surprised' },
+                    { q: 'When you are quiet you feel ____', a: 'calm' },
+                    { q: 'When you are loved you feel ____', a: 'loved' },
+                    { q: 'When you are silly you feel ____', a: 'silly' },
+                    { q: 'When you are tired you feel ____', a: 'tired' },
+                    { q: 'When you are excited you feel ____', a: 'excited' },
+                    { q: 'When you are sad you feel ____', a: 'sad' },
+                    { q: 'When you are happy you feel ____', a: 'happy' }
+                ],
+                goodfood: [
+                    { q: 'Good for you: ____', a: 'apple' },
+                    { q: 'Bad for you: ____', a: 'burger' },
+                    { q: 'A fruit: ____', a: 'banana' },
+                    { q: 'A vegetable: ____', a: 'carrot' },
+                    { q: 'A junk food: ____', a: 'fries' },
+                    { q: 'Healthy: ____', a: 'salad' },
+                    { q: 'Unhealthy: ____', a: 'donut' },
+                    { q: 'A drink: ____', a: 'water' },
+                    { q: 'A snack: ____', a: 'cookies' },
+                    { q: 'A meal: ____', a: 'pizza' },
+                    { q: 'A dessert: ____', a: 'ice cream' },
+                    { q: 'A salad: ____', a: 'salad' }
+                ],
+                clothes: [
+                    { q: 'Wear on your head: ____', a: 'hat' },
+                    { q: 'Wear on your feet: ____', a: 'shoes' },
+                    { q: 'Wear on your body: ____', a: 'shirt' },
+                    { q: 'Wear when cold: ____', a: 'coat' },
+                    { q: 'Wear on your hands: ____', a: 'gloves' },
+                    { q: 'A dress: ____', a: 'dress' },
+                    { q: 'A scarf: ____', a: 'scarf' },
+                    { q: 'A hat: ____', a: 'hat' },
+                    { q: 'A shoe: ____', a: 'shoe' },
+                    { q: 'A shirt: ____', a: 'shirt' },
+                    { q: 'A coat: ____', a: 'coat' },
+                    { q: 'Pants: ____', a: 'pants' }
+                ],
+                helpers: [
+                    { q: 'Helps sick people: ____', a: 'doctor' },
+                    { q: 'Teaches students: ____', a: 'teacher' },
+                    { q: 'Catches criminals: ____', a: 'police' },
+                    { q: 'Cooks food: ____', a: 'chef' },
+                    { q: 'Puts out fires: ____', a: 'firefighter' },
+                    { q: 'Grows food: ____', a: 'farmer' },
+                    { q: 'Fixes cars: ____', a: 'mechanic' },
+                    { q: 'Helps in hospital: ____', a: 'nurse' },
+                    { q: 'Flies a plane: ____', a: 'pilot' },
+                    { q: 'Is a student: ____', a: 'student' },
+                    { q: 'Drives a fire truck: ____', a: 'firefighter' },
+                    { q: 'Works in school: ____', a: 'teacher' }
+                ],
+                asean: [
+                    { q: 'A country in ASEAN: ____', a: 'singapore' },
+                    { q: 'A country in ASEAN: ____', a: 'malaysia' },
+                    { q: 'A country in ASEAN: ____', a: 'thailand' },
+                    { q: 'A country in ASEAN: ____', a: 'indonesia' },
+                    { q: 'A country in ASEAN: ____', a: 'philippines' },
+                    { q: 'A country in ASEAN: ____', a: 'vietnam' },
+                    { q: 'A country in ASEAN: ____', a: 'brunei' },
+                    { q: 'A country in ASEAN: ____', a: 'cambodia' },
+                    { q: 'A country in ASEAN: ____', a: 'laos' },
+                    { q: 'A country in ASEAN: ____', a: 'myanmar' },
+                    { q: 'A flag with a star: ____', a: 'singapore' },
+                    { q: 'A flag with a moon: ____', a: 'malaysia' }
+                ],
+                christmas: [
+                    { q: 'Decorated with lights: ____', a: 'tree' },
+                    { q: 'Brings gifts: ____', a: 'santa' },
+                    { q: 'Pulls sleigh: ____', a: 'reindeer' },
+                    { q: 'A gift: ____', a: 'present' },
+                    { q: 'Made of snow: ____', a: 'snowman' },
+                    { q: 'Rings: ____', a: 'bell' },
+                    { q: 'A star: ____', a: 'star' },
+                    { q: 'Hung for gifts: ____', a: 'stocking' },
+                    { q: 'A candle: ____', a: 'candle' },
+                    { q: 'A cookie: ____', a: 'cookie' },
+                    { q: 'A tree: ____', a: 'tree' },
+                    { q: 'A reindeer: ____', a: 'reindeer' }
+                ],
+                bible: [
+                    { q: 'The holy book: ____', a: 'bible' },
+                    { q: 'A cross: ____', a: 'cross' },
+                    { q: 'A dove: ____', a: 'dove' },
+                    { q: 'Love: ____', a: 'love' },
+                    { q: 'A lamb: ____', a: 'lamb' },
+                    { q: 'A crown: ____', a: 'crown' },
+                    { q: 'Bread: ____', a: 'bread' },
+                    { q: 'Water: ____', a: 'water' },
+                    { q: 'A star: ____', a: 'star' },
+                    { q: 'Prayer: ____', a: 'prayer' },
+                    { q: 'A temple: ____', a: 'temple' },
+                    { q: 'Faith: ____', a: 'faith' }
+                ],
+                default: [
+                    { q: 'Name a fruit: ____', a: 'apple' },
+                    { q: 'Name an animal: ____', a: 'cat' },
+                    { q: 'Name a color: ____', a: 'red' },
+                    { q: 'Name a shape: ____', a: 'circle' },
+                    { q: 'Name a vegetable: ____', a: 'carrot' },
+                    { q: 'Name a number: ____', a: 'one' },
+                    { q: 'Name a family member: ____', a: 'mother' },
+                    { q: 'Name a body part: ____', a: 'nose' },
+                    { q: 'Name a feeling: ____', a: 'happy' },
+                    { q: 'Name a helper: ____', a: 'teacher' },
+                    { q: 'Name a country: ____', a: 'thailand' },
+                    { q: 'Name a Christmas item: ____', a: 'tree' }
+                ]
+            };
+            return all[topicId] || all.default;
+        }
+
+        // ========== STATE ==========
+        let currentTopic = null;
+        let favorites = JSON.parse(localStorage.getItem('hanzFavs')) || [];
+        let progress = JSON.parse(localStorage.getItem('hanzProgress')) || {};
+        let currentGame = 0;
+        let memoryCards = [];
+        let memoryFlipped = [];
+        let memoryMatched = [];
+        let memoryLocked = false;
+
+        // ========== DOM REFS ==========
+        const grid = document.getElementById('topicGrid');
+        const detail = document.getElementById('topicDetail');
+        const detailTitle = document.getElementById('detailTitle');
+        const closeBtn = document.getElementById('closeDetailBtn');
+        const tabHeaders = document.getElementById('tabHeaders');
+        const tabContainer = document.getElementById('tabContentContainer');
+        const searchInput = document.getElementById('searchInput');
+        const favQuick = document.getElementById('favQuickBar');
+        const dashSection = document.getElementById('dashboardSection');
+        const dashGrid = document.getElementById('dashGrid');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupEmoji = document.getElementById('popupEmoji');
+        const popupWord = document.getElementById('popupWord');
+        const popupClose = document.getElementById('popupCloseBtn');
+        const popupSpeakerBtn = document.getElementById('popupSpeakerBtn');
+        const detailFavBtn = document.getElementById('detailFavBtn');
+        const detailSpeakerBtn = document.getElementById('detailSpeakerBtn');
+        const homeSection = document.getElementById('homeSection');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const menuToggle = document.getElementById('menuToggle');
+        const navList = document.getElementById('navLinks');
+        const celebrationContainer = document.getElementById('celebrationContainer');
+
+        // ========== HELPERS ==========
+        function getVocab(topicId) { return VOCAB[topicId] || ['📚 Learn','✏️ Fun','🌟 Explore']; }
+        function getTopicName(id) { const t = TOPICS.find(x=>x.id===id); return t ? t.name : id; }
+        function getTopicIcon(id) { const t = TOPICS.find(x=>x.id===id); return t ? t.icon : '📚'; }
+
+        function saveFavs() { localStorage.setItem('hanzFavs', JSON.stringify(favorites)); }
+        function saveProgress() { localStorage.setItem('hanzProgress', JSON.stringify(progress)); }
+
+        function toggleFav(id) {
+            const idx = favorites.indexOf(id);
+            if (idx>=0) favorites.splice(idx,1);
+            else favorites.push(id);
+            saveFavs();
+            renderFavQuick();
+            if (currentTopic===id) updateFavButton();
+        }
+
+        function updateFavButton() {
+            if (detailFavBtn) {
+                detailFavBtn.textContent = favorites.includes(currentTopic) ? '⭐ Unfavorite' : '⭐ Favorite';
+            }
+        }
+
+        function renderFavQuick() {
+            favQuick.innerHTML = '<span>⭐ Favorites:</span>';
+            if (favorites.length===0) { favQuick.innerHTML += '<span> none</span>'; return; }
+            favorites.forEach(id => {
+                const t = TOPICS.find(x=>x.id===id);
+                if (t) {
+                    const span = document.createElement('span');
+                    span.className = 'fav-topic';
+                    span.innerHTML = `${t.icon} ${t.name} <span style="cursor:pointer;font-weight:700;" data-removefav="${id}">✖</span>`;
+                    favQuick.appendChild(span);
+                }
+            });
+            favQuick.querySelectorAll('[data-removefav]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = el.dataset.removefav;
+                    toggleFav(id);
+                    if (currentTopic===id) updateFavButton();
+                    renderTopics();
+                });
+            });
+        }
+
+        function speakTopic(topicId) {
+            const name = getTopicName(topicId);
+            const msg = `Welcome! Today we will learn about ${name}.`;
+            speak(msg);
+        }
+
+        function celebrate(message = '🌟 Great Job! 🌟') {
+            const container = celebrationContainer;
+            container.innerHTML = '';
+            container.classList.add('show');
+            const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff6bcb', '#ff9f43'];
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 6) + 'px';
+                confetti.style.height = (Math.random() * 10 + 6) + 'px';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.animationDelay = (Math.random() * 1.5) + 's';
+                container.appendChild(confetti);
+            }
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'celebration-msg';
+            const msgs = ['🌟 Great Job! 🌟', '🎉 Excellent! 🎉', '✨ Amazing Work! ✨', '⭐ You Did It! ⭐', '🌈 Fantastic Learning! 🌈'];
+            msgDiv.textContent = message || msgs[Math.floor(Math.random() * msgs.length)];
+            container.appendChild(msgDiv);
+            setTimeout(() => {
+                container.classList.remove('show');
+                container.innerHTML = '';
+            }, 3500);
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 0.5);
+                setTimeout(() => {
+                    const osc2 = audioCtx.createOscillator();
+                    const gain2 = audioCtx.createGain();
+                    osc2.connect(gain2);
+                    gain2.connect(audioCtx.destination);
+                    osc2.frequency.value = 1000;
+                    osc2.type = 'sine';
+                    gain2.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                    osc2.start(audioCtx.currentTime);
+                    osc2.stop(audioCtx.currentTime + 0.4);
+                }, 200);
+            } catch(e) {}
+        }
+
+        // ========== RENDER TOPICS ==========
+        function renderTopics(filter='') {
+            grid.innerHTML = '';
+            const f = filter.toLowerCase().trim();
+            let list = TOPICS;
+            if (f) list = TOPICS.filter(t => t.name.toLowerCase().includes(f) || t.id.includes(f));
+            list.forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                const isFav = favorites.includes(t.id);
+                card.innerHTML = `
+                    <div class="icon">${t.icon}</div>
+                    <div class="name">${t.name}</div>
+                    <div style="font-size:0.9rem;">${isFav ? '⭐' : ''}</div>
+                    <button class="btn-open" data-topic="${t.id}" data-voice="Open ${t.name}">Open</button>
+                `;
+                grid.appendChild(card);
+            });
+            grid.querySelectorAll('.btn-open').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = btn.dataset.topic;
+                    openTopic(id);
+                    speakTopic(id);
+                });
+            });
+        }
+
+        // ========== OPEN TOPIC ==========
+        function openTopic(id) {
+            currentTopic = id;
+            const topic = TOPICS.find(t=>t.id===id);
+            if (!topic) return;
+            detailTitle.textContent = `${topic.icon} ${topic.name}`;
+            detail.classList.add('active');
+            updateFavButton();
+            homeSection.style.display = 'none';
+            tabHeaders.innerHTML = '';
+            const tabs = ['Review','Practice','Game','Worksheet'];
+            tabs.forEach((label, idx) => {
+                const btn = document.createElement('button');
+                btn.textContent = label;
+                btn.dataset.tab = idx;
+                btn.dataset.voice = label;
+                if (idx===0) btn.classList.add('active-tab');
+                btn.addEventListener('click', () => {
+                    switchTab(idx);
+                    speak(label);
+                });
+                tabHeaders.appendChild(btn);
+            });
+            tabContainer.innerHTML = '';
+            tabs.forEach((_, idx) => {
+                const div = document.createElement('div');
+                div.className = 'tab-content' + (idx===0 ? ' active-tab' : '');
+                div.dataset.tab = idx;
+                tabContainer.appendChild(div);
+            });
+            fillReviewTab(id);
+            fillPracticeTab(id);
+            fillGameTab(id);
+            fillWorksheetTab(id);
+            detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            detailSpeakerBtn.onclick = () => speakTopic(id);
+            // voice for review
+            setTimeout(() => {
+                speak("Let's learn new words together. Click the pictures to hear the words.");
+            }, 800);
+        }
+
+        function switchTab(idx) {
+            tabHeaders.querySelectorAll('button').forEach((b,i) => b.classList.toggle('active-tab', i===idx));
+            tabContainer.querySelectorAll('.tab-content').forEach((d,i) => d.classList.toggle('active-tab', i===idx));
+            const tabNames = ['Review', 'Practice', 'Game', 'Worksheet'];
+            if (idx === 1) speak("Let's practice what we learned.");
+            else if (idx === 2) speak("Choose a game to play.");
+            else if (idx === 3) speak("Complete the worksheet and do your best.");
+        }
+
+        // ----- REVIEW TAB with voice -----
+        function fillReviewTab(id) {
+            const container = tabContainer.querySelector('[data-tab="0"]');
+            const words = getVocab(id);
+            let html = '<div class="vocab-grid">';
+            words.forEach(w => {
+                const emoji = w.match(/\p{Emoji}/u) ? w.match(/\p{Emoji}/u)[0] : '📌';
+                const label = w.replace(/[\p{Emoji}]/gu,'').trim() || w;
+                html += `<div class="vocab-item" data-word="${label}" data-emoji="${emoji}" data-voice="${label}">
+                    <span class="big-emoji">${emoji}</span>
+                    <span class="label">${label}</span>
+                </div>`;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+            container.querySelectorAll('.vocab-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const word = el.dataset.word || 'Fun';
+                    const emoji = el.dataset.emoji || '🌟';
+                    popupEmoji.textContent = emoji;
+                    popupWord.textContent = word;
+                    popupOverlay.classList.add('show');
+                    // speak the word twice
+                    speak(`${word}. ${word}.`);
+                });
+            });
+        }
+
+        // ----- PRACTICE TAB with voice -----
+        function fillPracticeTab(id) {
+            const container = tabContainer.querySelector('[data-tab="1"]');
+            const questions = getPracticeQuestions(id);
+            if (!questions || questions.length === 0) {
+                container.innerHTML = '<div class="text-center">🎉 Practice questions coming soon!</div>';
+                return;
+            }
+            let currentQ = 0;
+            let score = 0;
+            let answered = false;
+
+            function renderQuestion() {
+                if (currentQ >= questions.length) {
+                    container.innerHTML = `
+                        <div class="text-center" style="font-size:1.8rem;padding:30px;">
+                            🎉 Practice Complete! <br>
+                            Score: ${score}/${questions.length}
+                            ${score === questions.length ? ' 🌟 Perfect!' : ''}
+                        </div>
+                        <div style="text-align:center;margin-top:16px;">
+                            <button class="btn-back" onclick="location.reload()" data-voice="Try Again">🔄 Try Again</button>
+                        </div>
+                    `;
+                    if (score === questions.length) {
+                        addProgress(id, 2);
+                        celebrate('🌟 Perfect Practice! 🌟');
+                    } else if (score >= questions.length * 0.7) {
+                        addProgress(id, 1);
+                        celebrate('🌟 Great Job! 🌟');
+                    }
+                    return;
+                }
+                const q = questions[currentQ];
+                answered = false;
+                let html = `
+                    <div class="practice-progress">Question ${currentQ+1} of ${questions.length}</div>
+                    <div style="text-align:center;font-size:1.6rem;font-weight:600;margin-bottom:16px;" data-voice="${q.q}">${q.q}</div>
+                    <div class="practice-options">
+                `;
+                q.options.forEach((opt, idx) => {
+                    html += `<button data-opt="${idx}" data-voice="${opt}">${opt}</button>`;
+                });
+                html += `</div><div class="practice-feedback" id="pf-${id}"></div>`;
+                container.innerHTML = html;
+                const feedback = container.querySelector(`#pf-${id}`);
+                // read question aloud
+                setTimeout(() => speak(q.q), 400);
+                container.querySelectorAll('.practice-options button').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (answered) return;
+                        const idx = parseInt(this.dataset.opt);
+                        const correct = q.answer;
+                        if (idx === correct) {
+                            feedback.innerHTML = '✅ Correct! 🌟';
+                            const praises = ['Great job!', 'Excellent!', 'Wonderful!'];
+                            speak(praises[Math.floor(Math.random() * praises.length)]);
+                            score++;
+                            answered = true;
+                            setTimeout(() => { currentQ++; renderQuestion(); }, 1200);
+                        } else {
+                            feedback.innerHTML = '❌ Try again!';
+                            const errors = ['Try again.', 'Almost!', "Let's try one more time."];
+                            speak(errors[Math.floor(Math.random() * errors.length)]);
+                        }
+                    });
+                    // read option on hover/click voice
+                    btn.addEventListener('mouseenter', function() {
+                        // optional: read option when hovered
+                    });
+                });
+            }
+            renderQuestion();
+        }
+
+        // ----- GAME TAB with voice -----
+        function fillGameTab(id) {
+            const container = tabContainer.querySelector('[data-tab="2"]');
+            let html = `
+                <div class="game-selector">
+                    <button data-game="0" class="active-game" data-voice="Sorting Game">🎯 Sorting Game</button>
+                    <button data-game="1" data-voice="Memory Game">🧠 Memory Game</button>
+                </div>
+                <div class="game-container" id="gameContainer"></div>
+            `;
+            container.innerHTML = html;
+            container.querySelectorAll('.game-selector button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    container.querySelectorAll('.game-selector button').forEach(b => b.classList.remove('active-game'));
+                    this.classList.add('active-game');
+                    currentGame = parseInt(this.dataset.game);
+                    const gameName = currentGame === 0 ? 'Sorting Game' : 'Memory Game';
+                    speak(`Choose a game to play. ${gameName}`);
+                    renderGame(id, currentGame);
+                });
+            });
+            renderGame(id, 0);
+            setTimeout(() => speak("Choose a game to play."), 500);
+        }
+
+        function renderGame(id, gameIdx) {
+            const container = document.getElementById('gameContainer');
+            if (gameIdx === 0) {
+                if (id === 'goodfood') {
+                    renderFoodSorting(container);
+                } else if (id === 'farm') {
+                    renderFarmSorting(container);
+                } else if (id === 'shapes') {
+                    renderShapeSorting(container);
+                } else {
+                    container.innerHTML = `
+                        <div class="text-center" style="padding:30px;font-size:1.4rem;">
+                            🎯 Sorting Game: <br>
+                            Sort items into two groups!
+                            <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+                                <div style="background:#f5e3d3;border-radius:40px;padding:20px;min-width:120px;border:4px dashed #b45309;">
+                                    <h4>✅ Group 1</h4>
+                                    <div id="sortGroup1"></div>
+                                </div>
+                                <div style="background:#f5e3d3;border-radius:40px;padding:20px;min-width:120px;border:4px dashed #b45309;">
+                                    <h4>✅ Group 2</h4>
+                                    <div id="sortGroup2"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:16px;"><button class="btn-back" onclick="location.reload()" data-voice="Reset">🔄 Reset</button></div>
+                        </div>
+                    `;
+                }
+            } else {
+                renderMemoryGame(container, id);
+            }
+        }
+
+        function renderFoodSorting(container) {
+            const foods = ['🍎 Apple','🥦 Broccoli','🍔 Burger','🍟 Fries','🥗 Salad','🍩 Donut','🥕 Carrot','🍕 Pizza','🍇 Grapes','🍪 Cookie'];
+            const good = ['Apple','Broccoli','Salad','Carrot','Grapes'];
+            let html = `<div style="text-align:center;font-size:1.3rem;font-weight:600;margin-bottom:10px;" data-voice="Click the healthy foods and place them in the Good Food box.">🍽️ Click food to sort: Good or Bad</div>
+                <div class="food-game-area">
+                    <div class="food-board" id="foodBoard"><h4>🧺 Food Board</h4></div>
+                    <div class="food-board" style="border-color:#2e7d32;"><h4>✅ Good</h4><div id="goodBox"></div></div>
+                    <div class="food-board" style="border-color:#b71c1c;"><h4>❌ Bad</h4><div id="badBox"></div></div>
+                </div>
+                <div style="text-align:center;margin-top:12px;"><button class="btn-back" id="resetFoodGame" data-voice="Reset">🔄 Reset</button></div>
+            `;
+            container.innerHTML = html;
+            setTimeout(() => speak("Click the healthy foods and place them in the Good Food box."), 400);
+            const board = document.getElementById('foodBoard');
+            const goodBox = document.getElementById('goodBox');
+            const badBox = document.getElementById('badBox');
+
+            function renderFoodBoard() {
+                board.innerHTML = '<h4>🧺 Food Board</h4>';
+                foods.forEach(f => {
+                    const div = document.createElement('div');
+                    div.className = 'food-item';
+                    div.dataset.food = f;
+                    const emoji = f.match(/\p{Emoji}/u) ? f.match(/\p{Emoji}/u)[0] : '🍽️';
+                    const label = f.replace(/[\p{Emoji}]/gu,'').trim();
+                    div.innerHTML = `<span class="emoji">${emoji}</span> ${label}`;
+                    div.addEventListener('click', function(e) {
+                        const foodName = this.dataset.food;
+                        const isGood = good.some(g => foodName.includes(g));
+                        const target = isGood ? goodBox : badBox;
+                        if (this.parentElement === target) return;
+                        if (this.parentElement) this.parentElement.removeChild(this);
+                        target.appendChild(this);
+                        const remaining = board.querySelectorAll('.food-item').length;
+                        if (remaining === 0) {
+                            addProgress('goodfood', 2);
+                            celebrate('🎉 You sorted all food!');
+                            speak("Excellent! You sorted all the food!");
+                        } else {
+                            const msg = isGood ? "Good choice!" : "That's right!";
+                            speak(msg);
+                        }
+                    });
+                    board.appendChild(div);
+                });
+            }
+            renderFoodBoard();
+            document.getElementById('resetFoodGame').addEventListener('click', function() {
+                const items = [...document.querySelectorAll('.food-item')];
+                items.forEach(item => {
+                    if (item.parentElement) item.parentElement.removeChild(item);
+                    board.appendChild(item);
+                });
+                renderFoodBoard();
+                speak("Let's try again!");
+            });
+        }
+
+        function renderFarmSorting(container) {
+            const animals = ['🐄 Cow','🐖 Pig','🐑 Sheep','🐔 Chicken','🦁 Lion','🐘 Elephant','🦒 Giraffe','🐅 Tiger'];
+            const farm = ['Cow','Pig','Sheep','Chicken'];
+            let html = `<div style="text-align:center;font-size:1.3rem;font-weight:600;margin-bottom:10px;" data-voice="Sort the animals: Farm or Wild">🐄 Sort: Farm or Wild</div>
+                <div class="food-game-area">
+                    <div class="food-board" id="farmBoard"><h4>🧺 Animals</h4></div>
+                    <div class="food-board" style="border-color:#2e7d32;"><h4>🏠 Farm</h4><div id="farmBox"></div></div>
+                    <div class="food-board" style="border-color:#b71c1c;"><h4>🌿 Wild</h4><div id="wildBox"></div></div>
+                </div>
+                <div style="text-align:center;margin-top:12px;"><button class="btn-back" id="resetFarmGame" data-voice="Reset">🔄 Reset</button></div>
+            `;
+            container.innerHTML = html;
+            setTimeout(() => speak("Sort the animals: Farm or Wild"), 400);
+            const board = document.getElementById('farmBoard');
+            const farmBox = document.getElementById('farmBox');
+            const wildBox = document.getElementById('wildBox');
+
+            function renderBoard() {
+                board.innerHTML = '<h4>🧺 Animals</h4>';
+                animals.forEach(f => {
+                    const div = document.createElement('div');
+                    div.className = 'food-item';
+                    div.dataset.animal = f;
+                    const emoji = f.match(/\p{Emoji}/u) ? f.match(/\p{Emoji}/u)[0] : '🐾';
+                    const label = f.replace(/[\p{Emoji}]/gu,'').trim();
+                    div.innerHTML = `<span class="emoji">${emoji}</span> ${label}`;
+                    div.addEventListener('click', function(e) {
+                        const name = this.dataset.animal;
+                        const isFarm = farm.some(f => name.includes(f));
+                        const target = isFarm ? farmBox : wildBox;
+                        if (this.parentElement === target) return;
+                        if (this.parentElement) this.parentElement.removeChild(this);
+                        target.appendChild(this);
+                        const remaining = board.querySelectorAll('.food-item').length;
+                        if (remaining === 0) {
+                            addProgress('farm', 2);
+                            celebrate('🎉 You sorted all animals!');
+                            speak("Wonderful! You sorted all the animals!");
+                        } else {
+                            speak(isFarm ? "Farm animal!" : "Wild animal!");
+                        }
+                    });
+                    board.appendChild(div);
+                });
+            }
+            renderBoard();
+            document.getElementById('resetFarmGame').addEventListener('click', function() {
+                const items = [...document.querySelectorAll('.food-item')];
+                items.forEach(item => {
+                    if (item.parentElement) item.parentElement.removeChild(item);
+                    board.appendChild(item);
+                });
+                renderBoard();
+                speak("Let's try again!");
+            });
+        }
+
+        function renderShapeSorting(container) {
+            const shapes = ['🔺 Triangle','⬛ Square','🔵 Circle','⬟ Diamond','⭐ Star','❤️ Heart','🟦 Rectangle','⬠ Pentagon'];
+            const group1 = ['Triangle','Square','Rectangle','Pentagon'];
+            let html = `<div style="text-align:center;font-size:1.3rem;font-weight:600;margin-bottom:10px;" data-voice="Sort the shapes by sides">⬛ Sort: 3+ sides or 4+ sides</div>
+                <div class="food-game-area">
+                    <div class="food-board" id="shapeBoard"><h4>🧺 Shapes</h4></div>
+                    <div class="food-board" style="border-color:#2e7d32;"><h4>🔺 3+ sides</h4><div id="shapeBox1"></div></div>
+                    <div class="food-board" style="border-color:#b71c1c;"><h4>⬛ 4+ sides</h4><div id="shapeBox2"></div></div>
+                </div>
+                <div style="text-align:center;margin-top:12px;"><button class="btn-back" id="resetShapeGame" data-voice="Reset">🔄 Reset</button></div>
+            `;
+            container.innerHTML = html;
+            setTimeout(() => speak("Sort the shapes by sides"), 400);
+            const board = document.getElementById('shapeBoard');
+            const box1 = document.getElementById('shapeBox1');
+            const box2 = document.getElementById('shapeBox2');
+
+            function renderBoard() {
+                board.innerHTML = '<h4>🧺 Shapes</h4>';
+                shapes.forEach(f => {
+                    const div = document.createElement('div');
+                    div.className = 'food-item';
+                    div.dataset.shape = f;
+                    const emoji = f.match(/\p{Emoji}/u) ? f.match(/\p{Emoji}/u)[0] : '⬛';
+                    const label = f.replace(/[\p{Emoji}]/gu,'').trim();
+                    div.innerHTML = `<span class="emoji">${emoji}</span> ${label}`;
+                    div.addEventListener('click', function(e) {
+                        const name = this.dataset.shape;
+                        const isGroup1 = group1.some(g => name.includes(g));
+                        const target = isGroup1 ? box1 : box2;
+                        if (this.parentElement === target) return;
+                        if (this.parentElement) this.parentElement.removeChild(this);
+                        target.appendChild(this);
+                        const remaining = board.querySelectorAll('.food-item').length;
+                        if (remaining === 0) {
+                            addProgress('shapes', 2);
+                            celebrate('🎉 You sorted all shapes!');
+                            speak("Great job! You sorted all the shapes!");
+                        } else {
+                            speak(isGroup1 ? "3 or more sides!" : "4 or more sides!");
+                        }
+                    });
+                    board.appendChild(div);
+                });
+            }
+            renderBoard();
+            document.getElementById('resetShapeGame').addEventListener('click', function() {
+                const items = [...document.querySelectorAll('.food-item')];
+                items.forEach(item => {
+                    if (item.parentElement) item.parentElement.removeChild(item);
+                    board.appendChild(item);
+                });
+                renderBoard();
+                speak("Let's try again!");
+            });
+        }
+
+        // ----- MEMORY GAME with voice -----
+        function renderMemoryGame(container, topicId) {
+            const vocab = getVocab(topicId).slice(0, 12);
+            const pairs = vocab.map(v => {
+                const emoji = v.match(/\p{Emoji}/u) ? v.match(/\p{Emoji}/u)[0] : '📌';
+                const label = v.replace(/[\p{Emoji}]/gu,'').trim() || v;
+                return { emoji, label, id: v };
+            });
+            let deck = [...pairs, ...pairs];
+            deck = deck.sort(() => Math.random() - 0.5);
+            memoryCards = deck;
+            memoryFlipped = [];
+            memoryMatched = [];
+            memoryLocked = false;
+
+            function render() {
+                let html = `<div style="text-align:center;font-weight:600;font-size:1.2rem;margin-bottom:12px;" data-voice="Match the pictures to find the pairs.">🧠 Match the pairs!</div>
+                    <div class="memory-grid" id="memoryGrid">`;
+                deck.forEach((card, idx) => {
+                    const matched = memoryMatched.includes(idx);
+                    const flipped = memoryFlipped.includes(idx);
+                    html += `<div class="memory-card ${matched ? 'matched' : ''} ${flipped ? 'flipped' : ''}" data-idx="${idx}" data-voice="${card.label}">
+                        ${matched || flipped ? card.emoji : '❓'}
+                    </div>`;
+                });
+                html += `</div>
+                    <div style="text-align:center;margin-top:16px;">
+                        <button class="btn-back" id="resetMemory" data-voice="New Game">🔄 New Game</button>
+                    </div>`;
+                container.innerHTML = html;
+                setTimeout(() => speak("Match the pictures to find the pairs."), 400);
+
+                document.getElementById('memoryGrid').querySelectorAll('.memory-card').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.idx);
+                        if (memoryLocked) return;
+                        if (memoryMatched.includes(idx)) return;
+                        if (memoryFlipped.includes(idx)) return;
+                        if (memoryFlipped.length === 2) return;
+
+                        const card = deck[idx];
+                        speak(card.label);
+                        memoryFlipped.push(idx);
+                        this.classList.add('flipped');
+                        this.textContent = card.emoji;
+
+                        if (memoryFlipped.length === 2) {
+                            memoryLocked = true;
+                            const [i1, i2] = memoryFlipped;
+                            if (deck[i1].id === deck[i2].id) {
+                                memoryMatched.push(i1, i2);
+                                memoryFlipped = [];
+                                memoryLocked = false;
+                                speak("Great job!");
+                                if (memoryMatched.length === deck.length) {
+                                    addProgress(topicId, 2);
+                                    celebrate('🎉 Memory Master! 🎉');
+                                    speak("Excellent! You matched all the pairs!");
+                                }
+                                render();
+                            } else {
+                                setTimeout(() => {
+                                    document.querySelectorAll('.memory-card').forEach(el2 => {
+                                        const idx2 = parseInt(el2.dataset.idx);
+                                        if (!memoryMatched.includes(idx2) && memoryFlipped.includes(idx2)) {
+                                            el2.classList.remove('flipped');
+                                            el2.textContent = '❓';
+                                        }
+                                    });
+                                    memoryFlipped = [];
+                                    memoryLocked = false;
+                                    speak("Try again.");
+                                }, 800);
+                            }
+                        }
+                    });
+                });
+
+                document.getElementById('resetMemory').addEventListener('click', function() {
+                    deck = [...pairs, ...pairs].sort(() => Math.random() - 0.5);
+                    memoryCards = deck;
+                    memoryFlipped = [];
+                    memoryMatched = [];
+                    memoryLocked = false;
+                    render();
+                    speak("New game! Match the pictures.");
+                });
+            }
+            render();
+        }
+
+        // ----- WORKSHEET TAB with voice -----
+        function fillWorksheetTab(id) {
+            const container = tabContainer.querySelector('[data-tab="3"]');
+            const qs = getWorksheetQuestions(id);
+            let html = `<div class="ws-area"><div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+                <label style="font-weight:700;">👶 Student Name:</label>
+                <input type="text" id="wsStudentName" placeholder="Your name" style="flex:1;min-width:150px;">
+            </div>`;
+            qs.forEach((q, idx) => {
+                html += `<div class="ws-question" data-idx="${idx}">
+                    <span class="q" data-voice="${q.q}">${idx+1}. ${q.q}</span>
+                    <button class="speaker-btn speaker-btn-small" data-voice="${q.q}" style="width:28px;height:28px;font-size:0.9rem;">🔊</button>
+                    <input type="text" class="ws-answer" placeholder="answer" data-answer="${q.a.toLowerCase()}">
+                    <span class="ws-result" id="wsResult${idx}"></span>
+                </div>`;
+            });
+            html += `<div style="text-align:center;margin:18px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <button class="btn-back" id="wsCheckBtn" data-voice="Check Answers">✅ Check Answers</button>
+                <button class="btn-back" id="wsPrintBtn" style="background:#f7c35c;" data-voice="Print Worksheet">🖨️ Print</button>
+                <button class="btn-back" id="wsDownloadBtn" style="background:#a5d6a7;" data-voice="Download Worksheet">⬇️ Download</button>
+            </div>
+            <div class="ws-score" id="wsScoreDisplay"></div></div>`;
+            container.innerHTML = html;
+
+            // voice for each question
+            container.querySelectorAll('.ws-question .q').forEach(el => {
+                const text = el.textContent;
+                el.dataset.voice = text;
+            });
+            container.querySelectorAll('.speaker-btn-small').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const qText = this.parentElement.querySelector('.q').textContent;
+                    speak(qText);
+                });
+            });
+
+            document.getElementById('wsCheckBtn').addEventListener('click', function() {
+                const inputs = container.querySelectorAll('.ws-answer');
+                let correct = 0;
+                inputs.forEach(inp => {
+                    const ans = inp.value.trim().toLowerCase();
+                    const correctAns = inp.dataset.answer;
+                    const resultSpan = container.querySelector(`#wsResult${inp.closest('.ws-question').dataset.idx}`);
+                    if (ans === correctAns) {
+                        resultSpan.textContent = '✅';
+                        correct++;
+                    } else {
+                        resultSpan.textContent = `✗ (${correctAns})`;
+                    }
+                });
+                const total = inputs.length;
+                const scoreDisplay = container.querySelector('#wsScoreDisplay');
+                scoreDisplay.textContent = `🌟 Score: ${correct}/${total}`;
+                if (correct === total) {
+                    addProgress(id, 2);
+                    scoreDisplay.textContent += ' 🎉 Perfect! +2 stars!';
+                    celebrate('🌟 Perfect Worksheet! 🌟');
+                    speak("Excellent! Perfect score!");
+                } else if (correct >= total * 0.7) {
+                    addProgress(id, 1);
+                    celebrate('🌟 Great Work! 🌟');
+                    speak("Great job! Keep learning!");
+                } else {
+                    speak("Good try! Let's practice more.");
+                }
+            });
+
+            document.getElementById('wsPrintBtn').addEventListener('click', function() {
+                const name = document.getElementById('wsStudentName').value || 'Student';
+                const printWindow = window.open('', '_blank', 'width=600,height=600');
+                if (printWindow) {
+                    let content = `<html><head><title>Worksheet</title><style>body{font-family:sans-serif;padding:30px;} .q{margin:14px 0;}</style></head><body><h2>📝 Worksheet - ${getTopicName(id)}</h2><p>Student: ${name}</p>`;
+                    const qs = getWorksheetQuestions(id);
+                    qs.forEach((q,i) => {
+                        content += `<div class="q"><strong>${i+1}. ${q.q}</strong> <span style="color:#999;">(answer: ${q.a})</span></div>`;
+                    });
+                    content += `</body></html>`;
+                    printWindow.document.write(content);
+                    printWindow.document.close();
+                    printWindow.focus();
+                    printWindow.print();
+                }
+                speak("Printing worksheet");
+            });
+
+            document.getElementById('wsDownloadBtn').addEventListener('click', function() {
+                const name = document.getElementById('wsStudentName').value || 'Student';
+                let content = `Worksheet - ${getTopicName(id)}\nStudent: ${name}\n\n`;
+                const qs = getWorksheetQuestions(id);
+                qs.forEach((q,i) => {
+                    content += `${i+1}. ${q.q}\n   Answer: ${q.a}\n\n`;
+                });
+                const blob = new Blob([content], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `worksheet_${id}.txt`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                speak("Downloading worksheet");
+            });
+        }
+
+        // ========== PROGRESS ==========
+        function addProgress(topicId, stars) {
+            if (!progress[topicId]) progress[topicId] = { stars:0, points:0, completed:false };
+            progress[topicId].stars += stars;
+            progress[topicId].points += stars * 10;
+            if (progress[topicId].stars >= 5) progress[topicId].completed = true;
+            saveProgress();
+            renderDashboard();
+        }
+
+        function renderDashboard() {
+            let html = '';
+            let totalStars = 0, totalPoints = 0, completed = 0;
+            TOPICS.forEach(t => {
+                const p = progress[t.id];
+                if (p) {
+                    totalStars += p.stars;
+                    totalPoints += p.points;
+                    if (p.completed) completed++;
+                    html += `<div class="dash-item"><strong>${t.icon} ${t.name}</strong><br>⭐ ${p.stars} stars<br>${p.completed ? '✅ Done' : '⏳ In progress'}</div>`;
+                } else {
+                    html += `<div class="dash-item"><strong>${t.icon} ${t.name}</strong><br>⭐ 0 stars<br>⏳ Not started</div>`;
+                }
+            });
+            const pct = TOPICS.length ? Math.round((completed/TOPICS.length)*100) : 0;
+            dashGrid.innerHTML = `
+                <div class="dash-item"><strong>⭐ Total Stars</strong><br>${totalStars}</div>
+                <div class="dash-item"><strong>🏆 Points</strong><br>${totalPoints}</div>
+                <div class="dash-item"><strong>📚 Topics</strong><br>${completed}/${TOPICS.length}</div>
+                <div class="dash-item"><strong>📈 Progress</strong><br>${pct}%</div>
+                ${html}
+            `;
+        }
+
+        // ========== NAVIGATION ==========
+        function navigateTo(section) {
+            const voiceMap = { home:'Home', dashboard:'Dashboard', favorites:'Favorites' };
+            speak(voiceMap[section] || section);
+            if (section==='home') {
+                detail.classList.remove('active');
+                homeSection.style.display = 'block';
+                dashSection.classList.remove('active');
+                renderTopics();
+            } else if (section==='dashboard') {
+                detail.classList.remove('active');
+                homeSection.style.display = 'none';
+                dashSection.classList.add('active');
+                renderDashboard();
+            } else if (section==='favorites') {
+                detail.classList.remove('active');
+                homeSection.style.display = 'block';
+                dashSection.classList.remove('active');
+                renderTopics();
+                const f = favorites;
+                if (f.length) {
+                    grid.innerHTML = '';
+                    f.forEach(id => {
+                        const t = TOPICS.find(x=>x.id===id);
+                        if (t) {
+                            const card = document.createElement('div');
+                            card.className = 'topic-card';
+                            card.innerHTML = `
+                                <div class="icon">${t.icon}</div>
+                                <div class="name">${t.name}</div>
+                                <div style="font-size:0.9rem;">⭐</div>
+                                <button class="btn-open" data-topic="${t.id}" data-voice="Open ${t.name}">Open</button>
+                            `;
+                            grid.appendChild(card);
+                        }
+                    });
+                    grid.querySelectorAll('.btn-open').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const id = btn.dataset.topic;
+                            openTopic(id);
+                            speakTopic(id);
+                        });
+                    });
+                } else {
+                    grid.innerHTML = '<div class="text-center" style="grid-column:1/-1;font-size:1.6rem;padding:40px;">❤️ No favorites yet. Star a topic!</div>';
+                }
+            }
+            navList.classList.remove('open');
+        }
+
+        // ========== EVENT LISTENERS ==========
+        closeBtn.addEventListener('click', () => {
+            detail.classList.remove('active');
+            homeSection.style.display = 'block';
+            currentTopic = null;
+            window.speechSynthesis.cancel();
+        });
+
+        popupClose.addEventListener('click', () => popupOverlay.classList.remove('show'));
+        popupOverlay.addEventListener('click', (e) => { if (e.target===popupOverlay) popupOverlay.classList.remove('show'); });
+
+        popupSpeakerBtn.addEventListener('click', () => {
+            const word = popupWord.textContent;
+            speak(`${word}. ${word}.`);
+        });
+
+        detailFavBtn.addEventListener('click', () => {
+            if (currentTopic) {
+                toggleFav(currentTopic);
+                updateFavButton();
+                renderTopics();
+                renderFavQuick();
+                speak(favorites.includes(currentTopic) ? 'Added to favorites' : 'Removed from favorites');
+            }
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (detail.classList.contains('active')) return;
+            renderTopics(val);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sec = link.dataset.section;
+                if (sec) navigateTo(sec);
+            });
+        });
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('open');
+        });
+
+        // Add voice to all buttons
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('[data-voice]');
+            if (target && target.dataset.voice) {
+                speak(target.dataset.voice);
+            }
+        });
+
+        // ========== INIT ==========
+        renderTopics();
+        renderFavQuick();
+        renderDashboard();
+
+        if (favorites.length===0) {
+            favorites = ['alphabet','numbers','colors','fruits','farm','bible'];
+            saveFavs();
+            renderFavQuick();
+            renderTopics();
+        }
+
+        console.log('🌈 Teacher Hanziey Learning Hub with Complete Voice Guidance!');
+    })();
+</script>
+</body>
+</html>
